@@ -1,0 +1,19 @@
+<h1>Attraction#Index</h1>
+<% if current_user.admin? %>
+  <%= link_to "New Attraction", new_attraction_path %>
+<% end %>
+
+<% @attractions.each do |attraction| %>
+  <h2><%= attraction.name %></h2>
+  <ul>
+  <li>Tickets Needed: <%= attraction.tickets %></li>
+  <li>Nasuea Rating: <%= attraction.nausea_rating %></li>
+  <li>Level of Fun: <%= attraction.happiness_rating %></li>
+  <li>Minimum Height: <%= attraction.min_height %></li>
+  <% if current_user.admin? %>
+  <li><%= link_to "Show #{attraction.name}", attraction_path(attraction) %></li>
+  <% else %>
+  <li><%= link_to "Go on #{attraction.name}", attraction_path(attraction) %></li>
+  <% end %>
+  </ul>
+<% end %>
